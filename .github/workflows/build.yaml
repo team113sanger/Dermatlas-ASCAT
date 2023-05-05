@@ -71,9 +71,9 @@ jobs:
       run: |
         set -e
         PRIMARY_TAG=$(echo "${{ steps.meta.outputs.tags }}" | head -n 1)
-        docker run -ti --rm ${PRIMARY_TAG} R --version
-        docker run -ti --rm ${PRIMARY_TAG} Rscript --version
-        docker run -ti --rm ${PRIMARY_TAG} alleleCounter --version
+        docker run --rm ${PRIMARY_TAG} R --version
+        docker run --rm ${PRIMARY_TAG} Rscript --version
+        docker run --rm ${PRIMARY_TAG} alleleCounter --version
     -
       name: Prepare test data
       run: echo "this is where you'd load some test data"
