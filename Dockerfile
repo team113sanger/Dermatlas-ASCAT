@@ -99,6 +99,7 @@ RUN alleleCounter --version && \
     R --version && \
     R --slave -e 'packageVersion("ASCAT")' && \
     R --slave -e 'packageVersion("GenomicRanges")' && \
-    R --slave -e 'packageVersion("IRanges")'
+    R --slave -e 'packageVersion("IRanges")' && \
+    run_ascat.R --help
 
 CMD ["/bin/bash"]
