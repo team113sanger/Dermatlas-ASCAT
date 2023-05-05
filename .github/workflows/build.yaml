@@ -69,11 +69,13 @@ jobs:
     -
       name: Check required commands
       run: |
-        set -e
+        set -eo pipefail
         PRIMARY_TAG=$(echo "${{ steps.meta.outputs.tags }}" | head -n 1)
-        docker run --rm ${PRIMARY_TAG} R --version
+        docker pull ${PRIMARY_TAG}
+        echo -e "\n\n----VERSIONS----"
+        docker run --rm ${PRIMARY_TAG} R --version | head -n 1
         docker run --rm ${PRIMARY_TAG} Rscript --version
-        docker run --rm ${PRIMARY_TAG} alleleCounter --version
+        echo -n "alleleCounter: " && docker run --rm ${PRIMARY_TAG} alleleCounter --version
     -
       name: Prepare test data
       run: echo "this is where you'd load some test data"
