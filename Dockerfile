@@ -92,7 +92,7 @@ COPY build/run_ascat.R $OPT/bin/.
 RUN adduser --disabled-password --gecos '' ascat && chsh -s /bin/bash && mkdir -p /home/ascat
 
 USER ascat
-WORKDIR /home/ascat
+WORKDIR /var/spool/output
 
 # check dependencies can be found
 RUN alleleCounter --version && \
