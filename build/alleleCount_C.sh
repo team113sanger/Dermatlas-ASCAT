@@ -68,4 +68,3 @@ make -C c -j$CPU
 cp c/bin/alleleCounter $INST_PATH/bin/.
 cd ../
 rm -rf distro.* allelecount
-
