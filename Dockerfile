@@ -64,6 +64,7 @@ RUN apt-get -yq update && \
         libncurses5 \
         p11-kit \
         r-bioc-genomicranges \
+        r-cran-argparser \
         unattended-upgrades && \
     unattended-upgrade -d -v && \
     apt-get remove -yq unattended-upgrades && \
@@ -84,6 +85,7 @@ ENV PATH="${OPT}/bin:$PATH" \
 
 RUN mkdir -p $OPT
 COPY --from=builder $OPT $OPT
+COPY build/run_ascat.R $OPT/bin/.
 
 ### this belongs in final minimised image
 
