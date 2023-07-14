@@ -89,7 +89,7 @@ COPY build/run_ascat.R $OPT/bin/.
 
 ### this belongs in final minimised image
 
-RUN adduser --disabled-password --gecos '' ascat && chsh -s /bin/bash && mkdir -p /home/ascat
+RUN useradd ascat --shell /bin/bash --create-home --home-dir /home/ascat
 
 USER ascat
 WORKDIR /var/spool/output
