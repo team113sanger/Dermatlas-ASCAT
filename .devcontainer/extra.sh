@@ -10,5 +10,14 @@ set +e
 # this fails if unstaged changes, however they should only exist when resuming
 git hf init -f
 
+cd /tmp
+sudo apt-get update -y
+sudo apt-get install -y alien squashfs-tools
+wget https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/s/singularity-ce-3.11.4-1.el7.x86_64.rpm
+sudo alien -d singularity-ce-3.11.4-1.el7.x86_64.rpm
+sudo apt-get install -y ./singularity-ce_3.11.4-2_amd64.deb
+rm -rf singularity-ce-3.11*
+cd -
+
 set -e
 pre-commit install --install-hooks

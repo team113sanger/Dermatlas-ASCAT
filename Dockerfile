@@ -16,7 +16,7 @@ RUN apt-get update -y && \
         libbz2-dev \
         liblzma-dev \
         libcurl4-gnutls-dev \
-        libncurses5-dev \
+        libncurses-dev \
         r-cran-devtools \
         r-bioc-genomicranges && \
         rm -rf /var/lib/apt/lists/*
