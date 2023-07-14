@@ -47,18 +47,31 @@ All paths passed to `run_ascat.R` should use the `/var/spool/*` version of the f
 
 ### Singularity
 
+You will need to create an environment file, `singularity.env`, also in repo as a file:
+
+```
+OPT="/opt/dermatlas"
+PATH="${OPT}/bin:$PATH"
+LD_LIBRARY_PATH="${OPT}/lib"
+R_LIBS="$OPT/R-lib"
+R_LIBS_USER="$R_LIBS"
+LC_ALL="en_US.UTF-8"
+LANG="en_US.UTF-8"
+```
+
 Change `develop` as appropriate.  If private you will need to perform relevant authentication.
 
 ```
 singularity pull docker://ghcr.io/cynapse-ccri/dermatlas-ascat:develop
 # creates dermatlas-ascat_develop.sif
-singularity exec --cleanenv dermatlas-ascat_develop.sif run_ascat.R --help
+singularity exec --cleanenv --env-file singularity.env dermatlas-ascat_develop.sif run_ascat.R --help
 ```
 
 You will need to mount data appropriately via the singularity bind option `--bind`.  Recommended approach:
 
 ```
 singularity exec --cleanenv \
+    --env-file singularity.env \
     --bind /full/path/reference:/var/spool/reference:ro \
     --bind /full/path/inputs:/var/spool/inputs:ro \
     --bind /full/path/output:/var/spool/output \
