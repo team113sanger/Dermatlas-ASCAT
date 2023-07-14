@@ -9,3 +9,6 @@ sudo rm -rf /tmp/gitflow
 set +e
 # this fails if unstaged changes, however they should only exist when resuming
 git hf init -f
+
+set -e
+pre-commit install --install-hooks
